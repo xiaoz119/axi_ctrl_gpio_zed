@@ -1,11 +1,14 @@
 # AXI4_Lite_Master_Controller
 The HDL design for AXI4_Lite master controller to driven the AXI4 based Xilinx IPs like AXI-GPIO AXI-IIC
 
-## BLOCK Diagram
+## Block Diagram
 <p align="center">
   <img src="figure/block_diagram_axi_gpio.jpg" width="600"/>
+  
 </p
-Figure.1 Design Block Diagram 
+
+Block Deisgn Diagram
+
 
 ## Controller Instruction Set
 
