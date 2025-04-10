@@ -5,8 +5,10 @@ The HDL design for AXI4_Lite master controller to driven the AXI4 based Xilinx I
 <p align="center">
   <img src="figure/block_diagram_axi_gpio.jpg" width="600"/>
 </p
-  
+
+
 ## Controller Instruction Set
+
 ### 🧠 Instruction Format Overview
 
 | Bit Range  | 31–27       | 26–20     | 19–12       | 11–3        | 2–0      |
