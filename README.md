@@ -32,10 +32,11 @@ Each instruction is exactly 32 bits, structured as follows:
 
 | Value | Operation      |
 |-------|----------------|
-| `000` | NOP / Reserved |
+| `000` | NOP            |
 | `001` | AXI4 Read      |
 | `010` | AXI4 Write     |
-| `011` – `111` | Reserved for future |
+| `011` – `110` | Reserved for future |
+| `111` | STALL          |
 
 ### `ADDR_AXI` (Bits 11:3)
 

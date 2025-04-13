@@ -25,7 +25,7 @@ module fsm_axi_lite_rd(
     input  rst_n,
     input  start,
     output reg done_flag,
-    output reg en_read,
+    output  en_mem_wr,
     // AXI4-Lite signal
     input arready,
     output reg arvalid,  
@@ -87,28 +87,26 @@ module fsm_axi_lite_rd(
                 arvalid = 1'b0;
                 rready = 1'b0;
                 done_flag = 1'b0;
-                en_read = 1'b0;
             end
             S_WAIT_ACK: begin
                 arvalid = 1'b1;
                 rready = 1'b1;
                 done_flag = 1'b0;
-                en_read = 1'b0;
             end
             S_READ: begin
                 arvalid = 1'b0;
                 rready = 1'b1;
                 done_flag = 1'b0;
-                en_read = 1'b1;
             end
             S_DONE:begin
                 arvalid = 1'b0;
                 rready = 1'b1;
                 done_flag = 1'b1;
-                en_read = 1'b0;
             end
         endcase
     end
+
+    assign en_mem_wr = rready && rvalid && resp_okay;
     
     
 endmodule
