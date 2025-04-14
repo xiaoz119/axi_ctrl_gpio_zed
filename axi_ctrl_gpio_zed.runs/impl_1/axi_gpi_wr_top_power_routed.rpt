@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Mon Apr 14 00:02:32 2025
+| Date             : Mon Apr 14 00:31:19 2025
 | Host             : DESKTOP-SF4M6F2 running 64-bit major release  (build 9200)
 | Command          : report_power -file axi_gpi_wr_top_power_routed.rpt -pb axi_gpi_wr_top_power_summary_routed.pb -rpx axi_gpi_wr_top_power_routed.rpx
 | Design           : axi_gpi_wr_top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.818        |
+| Total On-Chip Power (W)  | 0.819        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.700        |
+| Dynamic (W)              | 0.701        |
 | Device Static (W)        | 0.118        |
 | Effective TJA (C/W)      | 11.5         |
 | Max Ambient (C)          | 75.6         |
@@ -52,17 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.245 |      212 |       --- |             --- |
-|   LUT as Logic |     0.217 |       81 |     53200 |            0.15 |
+| Slice Logic    |     0.231 |      209 |       --- |             --- |
+|   LUT as Logic |     0.203 |       79 |     53200 |            0.15 |
 |   Register     |     0.014 |       95 |    106400 |            0.09 |
 |   CARRY4       |     0.009 |        4 |     13300 |            0.03 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   Others       |     0.000 |       14 |       --- |             --- |
-| Signals        |     0.221 |      154 |       --- |             --- |
+| Signals        |     0.240 |      154 |       --- |             --- |
 | Block RAM      |     0.007 |        1 |       140 |            0.71 |
-| I/O            |     0.227 |       10 |       200 |            5.00 |
+| I/O            |     0.223 |       10 |       200 |            5.00 |
 | Static Power   |     0.118 |          |           |                 |
-| Total          |     0.818 |          |           |                 |
+| Total          |     0.819 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,9 +72,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.486 |       0.476 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.492 |       0.482 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.020 |       0.008 |      0.012 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.064 |       0.063 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.063 |       0.062 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -146,18 +146,18 @@ Table of Contents
 +-----------------------------------+-----------+
 | Name                              | Power (W) |
 +-----------------------------------+-----------+
-| axi_gpi_wr_top                    |     0.700 |
-|   uut_axi4_lite_master_controller |     0.279 |
+| axi_gpi_wr_top                    |     0.701 |
+|   uut_axi4_lite_master_controller |     0.272 |
 |     u_fsm_axi_lite_wr             |     0.019 |
-|     u_fsm_top_level               |     0.236 |
-|     u_instr_mem                   |     0.011 |
+|     u_fsm_top_level               |     0.231 |
+|     u_instr_mem                   |     0.010 |
 |   uut_bram                        |     0.007 |
 |     U0                            |     0.007 |
 |       inst_blk_mem_gen            |     0.007 |
-|   uut_gpio                        |     0.169 |
-|     U0                            |     0.169 |
-|       AXI_LITE_IPIF_I             |     0.121 |
-|       gpio_core_1                 |     0.036 |
+|   uut_gpio                        |     0.181 |
+|     U0                            |     0.181 |
+|       AXI_LITE_IPIF_I             |     0.125 |
+|       gpio_core_1                 |     0.044 |
 +-----------------------------------+-----------+
 
 

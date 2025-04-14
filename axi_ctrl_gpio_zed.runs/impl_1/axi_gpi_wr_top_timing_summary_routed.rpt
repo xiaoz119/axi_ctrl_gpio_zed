@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Mon Apr 14 00:02:32 2025
+| Date         : Mon Apr 14 00:31:19 2025
 | Host         : DESKTOP-SF4M6F2 running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file axi_gpi_wr_top_timing_summary_routed.rpt -pb axi_gpi_wr_top_timing_summary_routed.pb -rpx axi_gpi_wr_top_timing_summary_routed.rpx -warn_on_violation
 | Design       : axi_gpi_wr_top
@@ -224,16 +224,16 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        7.483ns  (logic 3.958ns (52.896%)  route 3.525ns (47.104%))
+  Data Path Delay:        7.263ns  (logic 3.958ns (54.494%)  route 3.305ns (45.506%))
   Logic Levels:           2  (FDRE=1 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X107Y47        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[0]/C
-    SLICE_X107Y47        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[0]/Q
-                         net (fo=1, routed)           3.525     3.981    leds_OBUF[7]
-    U14                  OBUF (Prop_obuf_I_O)         3.502     7.483 r  leds_OBUF[7]_inst/O
-                         net (fo=0)                   0.000     7.483    leds[7]
+    SLICE_X107Y43        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[0]/C
+    SLICE_X107Y43        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[0]/Q
+                         net (fo=1, routed)           3.305     3.761    leds_OBUF[7]
+    U14                  OBUF (Prop_obuf_I_O)         3.502     7.263 r  leds_OBUF[7]_inst/O
+                         net (fo=0)                   0.000     7.263    leds[7]
     U14                                                               r  leds[7] (OUT)
   -------------------------------------------------------------------    -------------------
 
@@ -244,37 +244,37 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        5.809ns  (logic 3.968ns (68.314%)  route 1.841ns (31.686%))
+  Data Path Delay:        5.969ns  (logic 3.968ns (66.481%)  route 2.001ns (33.519%))
   Logic Levels:           2  (FDRE=1 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X107Y47        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[1]/C
-    SLICE_X107Y47        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[1]/Q
-                         net (fo=1, routed)           1.841     2.297    leds_OBUF[6]
-    U19                  OBUF (Prop_obuf_I_O)         3.512     5.809 r  leds_OBUF[6]_inst/O
-                         net (fo=0)                   0.000     5.809    leds[6]
+    SLICE_X107Y44        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[1]/C
+    SLICE_X107Y44        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[1]/Q
+                         net (fo=1, routed)           2.001     2.457    leds_OBUF[6]
+    U19                  OBUF (Prop_obuf_I_O)         3.512     5.969 r  leds_OBUF[6]_inst/O
+                         net (fo=0)                   0.000     5.969    leds[6]
     U19                                                               r  leds[6] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[2]/C
+  Source:                 uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[7]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            leds[5]
+  Destination:            leds[0]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        5.809ns  (logic 3.987ns (68.638%)  route 1.822ns (31.362%))
+  Data Path Delay:        5.955ns  (logic 4.116ns (69.128%)  route 1.838ns (30.872%))
   Logic Levels:           2  (FDRE=1 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X107Y45        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[2]/C
-    SLICE_X107Y45        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[2]/Q
-                         net (fo=1, routed)           1.822     2.278    leds_OBUF[5]
-    W22                  OBUF (Prop_obuf_I_O)         3.531     5.809 r  leds_OBUF[5]_inst/O
-                         net (fo=0)                   0.000     5.809    leds[5]
-    W22                                                               r  leds[5] (OUT)
+    SLICE_X107Y45        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[7]/C
+    SLICE_X107Y45        FDRE (Prop_fdre_C_Q)         0.419     0.419 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[7]/Q
+                         net (fo=1, routed)           1.838     2.257    leds_OBUF[0]
+    T22                  OBUF (Prop_obuf_I_O)         3.697     5.955 r  leds_OBUF[0]_inst/O
+                         net (fo=0)                   0.000     5.955    leds[0]
+    T22                                                               r  leds[0] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -284,16 +284,16 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        5.804ns  (logic 3.970ns (68.396%)  route 1.834ns (31.604%))
+  Data Path Delay:        5.856ns  (logic 3.970ns (67.785%)  route 1.887ns (32.215%))
   Logic Levels:           2  (FDRE=1 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X107Y47        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[6]/C
-    SLICE_X107Y47        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[6]/Q
-                         net (fo=1, routed)           1.834     2.290    leds_OBUF[1]
-    T21                  OBUF (Prop_obuf_I_O)         3.514     5.804 r  leds_OBUF[1]_inst/O
-                         net (fo=0)                   0.000     5.804    leds[1]
+    SLICE_X107Y43        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[6]/C
+    SLICE_X107Y43        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[6]/Q
+                         net (fo=1, routed)           1.887     2.343    leds_OBUF[1]
+    T21                  OBUF (Prop_obuf_I_O)         3.514     5.856 r  leds_OBUF[1]_inst/O
+                         net (fo=0)                   0.000     5.856    leds[1]
     T21                                                               r  leds[1] (OUT)
   -------------------------------------------------------------------    -------------------
 
@@ -304,37 +304,17 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        5.801ns  (logic 3.986ns (68.711%)  route 1.815ns (31.289%))
+  Data Path Delay:        5.826ns  (logic 3.986ns (68.409%)  route 1.841ns (31.591%))
   Logic Levels:           2  (FDRE=1 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X107Y47        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[4]/C
-    SLICE_X107Y47        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[4]/Q
-                         net (fo=1, routed)           1.815     2.271    leds_OBUF[3]
-    U21                  OBUF (Prop_obuf_I_O)         3.530     5.801 r  leds_OBUF[3]_inst/O
-                         net (fo=0)                   0.000     5.801    leds[3]
+    SLICE_X107Y45        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[4]/C
+    SLICE_X107Y45        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[4]/Q
+                         net (fo=1, routed)           1.841     2.297    leds_OBUF[3]
+    U21                  OBUF (Prop_obuf_I_O)         3.530     5.826 r  leds_OBUF[3]_inst/O
+                         net (fo=0)                   0.000     5.826    leds[3]
     U21                                                               r  leds[3] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[7]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            leds[0]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        5.713ns  (logic 4.040ns (70.717%)  route 1.673ns (29.283%))
-  Logic Levels:           2  (FDRE=1 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X112Y45        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[7]/C
-    SLICE_X112Y45        FDRE (Prop_fdre_C_Q)         0.518     0.518 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[7]/Q
-                         net (fo=1, routed)           1.673     2.191    leds_OBUF[0]
-    T22                  OBUF (Prop_obuf_I_O)         3.522     5.713 r  leds_OBUF[0]_inst/O
-                         net (fo=0)                   0.000     5.713    leds[0]
-    T22                                                               r  leds[0] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -344,16 +324,16 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        5.685ns  (logic 3.993ns (70.238%)  route 1.692ns (29.762%))
+  Data Path Delay:        5.681ns  (logic 3.993ns (70.288%)  route 1.688ns (29.712%))
   Logic Levels:           2  (FDRE=1 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X107Y45        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[3]/C
-    SLICE_X107Y45        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[3]/Q
-                         net (fo=1, routed)           1.692     2.148    leds_OBUF[4]
-    V22                  OBUF (Prop_obuf_I_O)         3.537     5.685 r  leds_OBUF[4]_inst/O
-                         net (fo=0)                   0.000     5.685    leds[4]
+    SLICE_X107Y43        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[3]/C
+    SLICE_X107Y43        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[3]/Q
+                         net (fo=1, routed)           1.688     2.144    leds_OBUF[4]
+    V22                  OBUF (Prop_obuf_I_O)         3.537     5.681 r  leds_OBUF[4]_inst/O
+                         net (fo=0)                   0.000     5.681    leds[4]
     V22                                                               r  leds[4] (OUT)
   -------------------------------------------------------------------    -------------------
 
@@ -364,65 +344,73 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        5.667ns  (logic 3.987ns (70.360%)  route 1.680ns (29.640%))
+  Data Path Delay:        5.675ns  (logic 3.987ns (70.257%)  route 1.688ns (29.743%))
   Logic Levels:           2  (FDRE=1 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X107Y45        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[5]/C
-    SLICE_X107Y45        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[5]/Q
-                         net (fo=1, routed)           1.680     2.136    leds_OBUF[2]
-    U22                  OBUF (Prop_obuf_I_O)         3.531     5.667 r  leds_OBUF[2]_inst/O
-                         net (fo=0)                   0.000     5.667    leds[2]
+    SLICE_X107Y44        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[5]/C
+    SLICE_X107Y44        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[5]/Q
+                         net (fo=1, routed)           1.688     2.144    leds_OBUF[2]
+    U22                  OBUF (Prop_obuf_I_O)         3.531     5.675 r  leds_OBUF[2]_inst/O
+                         net (fo=0)                   0.000     5.675    leds[2]
     U22                                                               r  leds[2] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[2]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            leds[5]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.665ns  (logic 3.987ns (70.385%)  route 1.678ns (29.615%))
+  Logic Levels:           2  (FDRE=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y43        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[2]/C
+    SLICE_X107Y43        FDRE (Prop_fdre_C_Q)         0.456     0.456 r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[2]/Q
+                         net (fo=1, routed)           1.678     2.134    leds_OBUF[5]
+    W22                  OBUF (Prop_obuf_I_O)         3.531     5.665 r  leds_OBUF[5]_inst/O
+                         net (fo=0)                   0.000     5.665    leds[5]
+    W22                                                               r  leds[5] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
   Source:                 reset_n
                             (input port)
-  Destination:            uut_axi4_lite_master_controller/mem_rdata_reg[2]/CLR
+  Destination:            uut_axi4_lite_master_controller/pc_reg[6]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.185ns  (logic 1.057ns (25.260%)  route 3.128ns (74.740%))
-  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Data Path Delay:        3.945ns  (logic 0.933ns (23.648%)  route 3.012ns (76.352%))
+  Logic Levels:           1  (IBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    P16                                               0.000     0.000 r  reset_n (IN)
+    P16                                               0.000     0.000 f  reset_n (IN)
                          net (fo=0)                   0.000     0.000    reset_n
-    P16                  IBUF (Prop_ibuf_I_O)         0.933     0.933 r  reset_n_IBUF_inst/O
-                         net (fo=4, routed)           1.096     2.029    uut_axi4_lite_master_controller/u_fsm_top_level/s_axi_aresetn
-    SLICE_X110Y46        LUT1 (Prop_lut1_I0_O)        0.124     2.153 f  uut_axi4_lite_master_controller/u_fsm_top_level/FSM_sequential_curr_state[2]_i_2/O
-                         net (fo=38, routed)          2.032     4.185    uut_axi4_lite_master_controller/u_fsm_top_level_n_0
-    SLICE_X106Y45        FDCE                                         f  uut_axi4_lite_master_controller/mem_rdata_reg[2]/CLR
+    P16                  IBUF (Prop_ibuf_I_O)         0.933     0.933 f  reset_n_IBUF_inst/O
+                         net (fo=41, routed)          3.012     3.945    uut_axi4_lite_master_controller/reset_n_IBUF
+    SLICE_X110Y26        FDCE                                         f  uut_axi4_lite_master_controller/pc_reg[6]/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 uut_axi4_lite_master_controller/u_fsm_top_level/axi_exec_count_reg[1]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_reg[8]/D
+  Source:                 reset_n
+                            (input port)
+  Destination:            uut_axi4_lite_master_controller/pc_reg[7]/CLR
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        4.031ns  (logic 2.294ns (56.913%)  route 1.737ns (43.087%))
-  Logic Levels:           5  (CARRY4=3 FDCE=1 LUT1=1)
+  Data Path Delay:        3.945ns  (logic 0.933ns (23.648%)  route 3.012ns (76.352%))
+  Logic Levels:           1  (IBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X110Y41        FDCE                         0.000     0.000 r  uut_axi4_lite_master_controller/u_fsm_top_level/axi_exec_count_reg[1]/C
-    SLICE_X110Y41        FDCE (Prop_fdce_C_Q)         0.456     0.456 f  uut_axi4_lite_master_controller/u_fsm_top_level/axi_exec_count_reg[1]/Q
-                         net (fo=7, routed)           0.975     1.431    uut_axi4_lite_master_controller/u_fsm_top_level/axi_exec_count_reg_n_0_[1]
-    SLICE_X109Y44        LUT1 (Prop_lut1_I0_O)        0.124     1.555 r  uut_axi4_lite_master_controller/u_fsm_top_level/uut_gpio_i_13/O
-                         net (fo=1, routed)           0.000     1.555    uut_axi4_lite_master_controller/u_fsm_top_level/uut_gpio_i_13_n_0
-    SLICE_X109Y44        CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550     2.105 r  uut_axi4_lite_master_controller/u_fsm_top_level/uut_gpio_i_6/CO[3]
-                         net (fo=1, routed)           0.000     2.105    uut_axi4_lite_master_controller/u_fsm_top_level/uut_gpio_i_6_n_0
-    SLICE_X109Y45        CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     2.327 r  uut_axi4_lite_master_controller/u_fsm_top_level/uut_gpio_i_5/O[0]
-                         net (fo=1, routed)           0.761     3.089    uut_axi4_lite_master_controller/u_fsm_top_level/axi_counter[4]
-    SLICE_X108Y45        CARRY4 (Prop_carry4_S[1]_O[3])
-                                                      0.942     4.031 r  uut_axi4_lite_master_controller/u_fsm_top_level/uut_gpio_i_1/O[3]
-                         net (fo=1, routed)           0.000     4.031    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_araddr[2]
-    SLICE_X108Y45        FDRE                                         r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_reg[8]/D
+    P16                                               0.000     0.000 f  reset_n (IN)
+                         net (fo=0)                   0.000     0.000    reset_n
+    P16                  IBUF (Prop_ibuf_I_O)         0.933     0.933 f  reset_n_IBUF_inst/O
+                         net (fo=41, routed)          3.012     3.945    uut_axi4_lite_master_controller/reset_n_IBUF
+    SLICE_X110Y26        FDCE                                         f  uut_axi4_lite_master_controller/pc_reg[7]/CLR
   -------------------------------------------------------------------    -------------------
 
 
@@ -432,7 +420,7 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 uut_axi4_lite_master_controller/mem_rdata_reg[25]/C
+  Source:                 uut_axi4_lite_master_controller/mem_rdata_reg[1]/C
                             (rising edge-triggered cell FDCE)
   Destination:            uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[6]/D
   Path Group:             (none)
@@ -442,12 +430,29 @@ Slack:                    inf
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X106Y47        FDCE                         0.000     0.000 r  uut_axi4_lite_master_controller/mem_rdata_reg[25]/C
-    SLICE_X106Y47        FDCE (Prop_fdce_C_Q)         0.141     0.141 r  uut_axi4_lite_master_controller/mem_rdata_reg[25]/Q
-                         net (fo=1, routed)           0.051     0.192    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/s_axi_wdata[9]
-    SLICE_X107Y47        LUT4 (Prop_lut4_I3_O)        0.045     0.237 r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Not_Dual.gpio_Data_Out[6]_i_1/O
+    SLICE_X106Y43        FDCE                         0.000     0.000 r  uut_axi4_lite_master_controller/mem_rdata_reg[1]/C
+    SLICE_X106Y43        FDCE (Prop_fdce_C_Q)         0.141     0.141 r  uut_axi4_lite_master_controller/mem_rdata_reg[1]/Q
+                         net (fo=1, routed)           0.051     0.192    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/s_axi_wdata[1]
+    SLICE_X107Y43        LUT4 (Prop_lut4_I0_O)        0.045     0.237 r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Not_Dual.gpio_Data_Out[6]_i_1/O
                          net (fo=1, routed)           0.000     0.237    uut_gpio/U0/gpio_core_1/D[1]
-    SLICE_X107Y47        FDRE                                         r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[6]/D
+    SLICE_X107Y43        FDRE                                         r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 uut_gpio/U0/ip2bus_data_i_D1_reg[0]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[31]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.240ns  (logic 0.141ns (58.691%)  route 0.099ns (41.309%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X109Y45        FDRE                         0.000     0.000 r  uut_gpio/U0/ip2bus_data_i_D1_reg[0]/C
+    SLICE_X109Y45        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  uut_gpio/U0/ip2bus_data_i_D1_reg[0]/Q
+                         net (fo=1, routed)           0.099     0.240    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Q[8]
+    SLICE_X106Y44        FDRE                                         r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[31]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -461,154 +466,133 @@ Slack:                    inf
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X111Y41        FDCE                         0.000     0.000 r  uut_axi4_lite_master_controller/u_fsm_top_level/delay_counter_reg[0]/C
-    SLICE_X111Y41        FDCE (Prop_fdce_C_Q)         0.128     0.128 r  uut_axi4_lite_master_controller/u_fsm_top_level/delay_counter_reg[0]/Q
+    SLICE_X110Y42        FDCE                         0.000     0.000 r  uut_axi4_lite_master_controller/u_fsm_top_level/delay_counter_reg[0]/C
+    SLICE_X110Y42        FDCE (Prop_fdce_C_Q)         0.128     0.128 r  uut_axi4_lite_master_controller/u_fsm_top_level/delay_counter_reg[0]/Q
                          net (fo=1, routed)           0.119     0.247    uut_axi4_lite_master_controller/u_fsm_top_level/delay_counter
-    SLICE_X111Y41        FDCE                                         r  uut_axi4_lite_master_controller/u_fsm_top_level/instr_valid_reg/D
+    SLICE_X110Y42        FDCE                                         r  uut_axi4_lite_master_controller/u_fsm_top_level/instr_valid_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 uut_gpio/U0/ip2bus_data_i_D1_reg[0]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[31]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.251ns  (logic 0.141ns (56.174%)  route 0.110ns (43.826%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X109Y47        FDRE                         0.000     0.000 r  uut_gpio/U0/ip2bus_data_i_D1_reg[0]/C
-    SLICE_X109Y47        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  uut_gpio/U0/ip2bus_data_i_D1_reg[0]/Q
-                         net (fo=1, routed)           0.110     0.251    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Q[8]
-    SLICE_X108Y47        FDRE                                         r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[31]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 uut_gpio/U0/ip2bus_data_i_D1_reg[27]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[4]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.265ns  (logic 0.164ns (61.886%)  route 0.101ns (38.114%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X108Y46        FDRE                         0.000     0.000 r  uut_gpio/U0/ip2bus_data_i_D1_reg[27]/C
-    SLICE_X108Y46        FDRE (Prop_fdre_C_Q)         0.164     0.164 r  uut_gpio/U0/ip2bus_data_i_D1_reg[27]/Q
-                         net (fo=1, routed)           0.101     0.265    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Q[4]
-    SLICE_X107Y46        FDRE                                         r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[4]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 uut_gpio/U0/gpio_core_1/iGPIO_xferAck_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            uut_gpio/U0/gpio_core_1/gpio_xferAck_Reg_reg/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.268ns  (logic 0.141ns (52.559%)  route 0.127ns (47.441%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X111Y45        FDRE                         0.000     0.000 r  uut_gpio/U0/gpio_core_1/iGPIO_xferAck_reg/C
-    SLICE_X111Y45        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  uut_gpio/U0/gpio_core_1/iGPIO_xferAck_reg/Q
-                         net (fo=3, routed)           0.127     0.268    uut_gpio/U0/gpio_core_1/GPIO_xferAck_i
-    SLICE_X111Y45        FDRE                                         r  uut_gpio/U0/gpio_core_1/gpio_xferAck_Reg_reg/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 uut_gpio/U0/ip2bus_data_i_D1_reg[30]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[1]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.272ns  (logic 0.164ns (60.256%)  route 0.108ns (39.744%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X108Y46        FDRE                         0.000     0.000 r  uut_gpio/U0/ip2bus_data_i_D1_reg[30]/C
-    SLICE_X108Y46        FDRE (Prop_fdre_C_Q)         0.164     0.164 r  uut_gpio/U0/ip2bus_data_i_D1_reg[30]/Q
-                         net (fo=1, routed)           0.108     0.272    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Q[1]
-    SLICE_X108Y47        FDRE                                         r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[1]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 uut_axi4_lite_master_controller/mem_rdata_reg[4]/C
+  Source:                 uut_axi4_lite_master_controller/mem_rdata_reg[27]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[3]/D
+  Destination:            uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[4]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.280ns  (logic 0.186ns (66.388%)  route 0.094ns (33.612%))
+  Data Path Delay:        0.272ns  (logic 0.186ns (68.463%)  route 0.086ns (31.537%))
   Logic Levels:           2  (FDCE=1 LUT4=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X109Y45        FDCE                         0.000     0.000 r  uut_axi4_lite_master_controller/mem_rdata_reg[4]/C
-    SLICE_X109Y45        FDCE (Prop_fdce_C_Q)         0.141     0.141 r  uut_axi4_lite_master_controller/mem_rdata_reg[4]/Q
-                         net (fo=1, routed)           0.094     0.235    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/s_axi_wdata[4]
-    SLICE_X107Y45        LUT4 (Prop_lut4_I0_O)        0.045     0.280 r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Not_Dual.gpio_Data_Out[3]_i_1/O
-                         net (fo=1, routed)           0.000     0.280    uut_gpio/U0/gpio_core_1/D[4]
-    SLICE_X107Y45        FDRE                                         r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[3]/D
+    SLICE_X106Y45        FDCE                         0.000     0.000 r  uut_axi4_lite_master_controller/mem_rdata_reg[27]/C
+    SLICE_X106Y45        FDCE (Prop_fdce_C_Q)         0.141     0.141 r  uut_axi4_lite_master_controller/mem_rdata_reg[27]/Q
+                         net (fo=1, routed)           0.086     0.227    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/s_axi_wdata[11]
+    SLICE_X107Y45        LUT4 (Prop_lut4_I3_O)        0.045     0.272 r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Not_Dual.gpio_Data_Out[4]_i_1/O
+                         net (fo=1, routed)           0.000     0.272    uut_gpio/U0/gpio_core_1/D[3]
+    SLICE_X107Y45        FDRE                                         r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[4]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 uut_axi4_lite_master_controller/mem_rdata_reg[5]/C
+  Source:                 uut_axi4_lite_master_controller/pc_reg[5]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[2]/D
+  Destination:            uut_axi4_lite_master_controller/u_instr_mem/data_reg[12]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.294ns  (logic 0.186ns (63.260%)  route 0.108ns (36.740%))
-  Logic Levels:           2  (FDCE=1 LUT4=1)
+  Data Path Delay:        0.273ns  (logic 0.186ns (68.080%)  route 0.087ns (31.920%))
+  Logic Levels:           2  (FDCE=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X106Y46        FDCE                         0.000     0.000 r  uut_axi4_lite_master_controller/mem_rdata_reg[5]/C
-    SLICE_X106Y46        FDCE (Prop_fdce_C_Q)         0.141     0.141 r  uut_axi4_lite_master_controller/mem_rdata_reg[5]/Q
-                         net (fo=1, routed)           0.108     0.249    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/s_axi_wdata[5]
-    SLICE_X107Y45        LUT4 (Prop_lut4_I0_O)        0.045     0.294 r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Not_Dual.gpio_Data_Out[2]_i_1/O
-                         net (fo=1, routed)           0.000     0.294    uut_gpio/U0/gpio_core_1/D[5]
-    SLICE_X107Y45        FDRE                                         r  uut_gpio/U0/gpio_core_1/Not_Dual.gpio_Data_Out_reg[2]/D
+    SLICE_X109Y26        FDCE                         0.000     0.000 r  uut_axi4_lite_master_controller/pc_reg[5]/C
+    SLICE_X109Y26        FDCE (Prop_fdce_C_Q)         0.141     0.141 r  uut_axi4_lite_master_controller/pc_reg[5]/Q
+                         net (fo=6, routed)           0.087     0.228    uut_axi4_lite_master_controller/u_instr_mem/data_reg[13]_0[5]
+    SLICE_X108Y26        LUT6 (Prop_lut6_I4_O)        0.045     0.273 r  uut_axi4_lite_master_controller/u_instr_mem/data[12]_i_1/O
+                         net (fo=1, routed)           0.000     0.273    uut_axi4_lite_master_controller/u_instr_mem/data[12]_i_1_n_0
+    SLICE_X108Y26        FDRE                                         r  uut_axi4_lite_master_controller/u_instr_mem/data_reg[12]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg[2]/C
+  Source:                 uut_gpio/U0/ip2bus_data_i_D1_reg[31]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            uut_gpio/U0/ip2bus_data_i_D1_reg[30]/D
+  Destination:            uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[0]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.296ns  (logic 0.186ns (62.891%)  route 0.110ns (37.109%))
-  Logic Levels:           2  (FDRE=1 LUT5=1)
+  Data Path Delay:        0.299ns  (logic 0.141ns (47.176%)  route 0.158ns (52.824%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X109Y46        FDRE                         0.000     0.000 r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg[2]/C
-    SLICE_X109Y46        FDRE (Prop_fdre_C_Q)         0.141     0.141 f  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg[2]/Q
-                         net (fo=9, routed)           0.110     0.251    uut_gpio/U0/gpio_core_1/GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg
-    SLICE_X108Y46        LUT5 (Prop_lut5_I0_O)        0.045     0.296 r  uut_gpio/U0/gpio_core_1/ip2bus_data_i_D1[30]_i_1/O
-                         net (fo=1, routed)           0.000     0.296    uut_gpio/U0/ip2bus_data[30]
-    SLICE_X108Y46        FDRE                                         r  uut_gpio/U0/ip2bus_data_i_D1_reg[30]/D
+    SLICE_X109Y42        FDRE                         0.000     0.000 r  uut_gpio/U0/ip2bus_data_i_D1_reg[31]/C
+    SLICE_X109Y42        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  uut_gpio/U0/ip2bus_data_i_D1_reg[31]/Q
+                         net (fo=1, routed)           0.158     0.299    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Q[0]
+    SLICE_X107Y42        FDRE                                         r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg[2]/C
+  Source:                 uut_gpio/U0/ip2bus_data_i_D1_reg[24]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            uut_gpio/U0/ip2bus_data_i_D1_reg[29]/D
+  Destination:            uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[7]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.298ns  (logic 0.186ns (62.469%)  route 0.112ns (37.531%))
-  Logic Levels:           2  (FDRE=1 LUT5=1)
+  Data Path Delay:        0.306ns  (logic 0.141ns (46.023%)  route 0.165ns (53.977%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X109Y46        FDRE                         0.000     0.000 r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg[2]/C
-    SLICE_X109Y46        FDRE (Prop_fdre_C_Q)         0.141     0.141 f  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg[2]/Q
-                         net (fo=9, routed)           0.112     0.253    uut_gpio/U0/gpio_core_1/GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg
-    SLICE_X108Y46        LUT5 (Prop_lut5_I0_O)        0.045     0.298 r  uut_gpio/U0/gpio_core_1/ip2bus_data_i_D1[29]_i_1/O
-                         net (fo=1, routed)           0.000     0.298    uut_gpio/U0/ip2bus_data[29]
-    SLICE_X108Y46        FDRE                                         r  uut_gpio/U0/ip2bus_data_i_D1_reg[29]/D
+    SLICE_X109Y45        FDRE                         0.000     0.000 r  uut_gpio/U0/ip2bus_data_i_D1_reg[24]/C
+    SLICE_X109Y45        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  uut_gpio/U0/ip2bus_data_i_D1_reg[24]/Q
+                         net (fo=1, routed)           0.165     0.306    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Q[7]
+    SLICE_X106Y44        FDRE                                         r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 uut_gpio/U0/ip2bus_data_i_D1_reg[28]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[3]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.317ns  (logic 0.164ns (51.712%)  route 0.153ns (48.288%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X108Y42        FDRE                         0.000     0.000 r  uut_gpio/U0/ip2bus_data_i_D1_reg[28]/C
+    SLICE_X108Y42        FDRE (Prop_fdre_C_Q)         0.164     0.164 r  uut_gpio/U0/ip2bus_data_i_D1_reg[28]/Q
+                         net (fo=1, routed)           0.153     0.317    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Q[3]
+    SLICE_X107Y42        FDRE                                         r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 uut_gpio/U0/ip2bus_data_i_D1_reg[25]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[6]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.318ns  (logic 0.164ns (51.592%)  route 0.154ns (48.408%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X108Y42        FDRE                         0.000     0.000 r  uut_gpio/U0/ip2bus_data_i_D1_reg[25]/C
+    SLICE_X108Y42        FDRE (Prop_fdre_C_Q)         0.164     0.164 r  uut_gpio/U0/ip2bus_data_i_D1_reg[25]/Q
+                         net (fo=1, routed)           0.154     0.318    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Q[6]
+    SLICE_X107Y42        FDRE                                         r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_onehot_state_reg[1]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[1]/CE
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.322ns  (logic 0.141ns (43.754%)  route 0.181ns (56.246%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X109Y45        FDRE                         0.000     0.000 r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_onehot_state_reg[1]/C
+    SLICE_X109Y45        FDRE (Prop_fdre_C_Q)         0.141     0.141 r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_onehot_state_reg[1]/Q
+                         net (fo=11, routed)          0.181     0.322    uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rresp_i
+    SLICE_X106Y44        FDRE                                         r  uut_gpio/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_reg[1]/CE
   -------------------------------------------------------------------    -------------------
 
 

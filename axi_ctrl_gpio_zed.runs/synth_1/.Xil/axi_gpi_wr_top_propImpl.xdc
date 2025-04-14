@@ -23,7 +23,5 @@ set_property src_info {type:XDC file:1 line:366 export:INPUT save:INPUT read:REA
 set_property IOSTANDARD LVCMOS33 [get_ports -of_objects [get_iobanks 33]];
 set_property src_info {type:XDC file:1 line:371 export:INPUT save:INPUT read:READ} [current_design]
 set_property IOSTANDARD LVCMOS18 [get_ports -of_objects [get_iobanks 34]];
-set_property src_info {type:XDC file:1 line:376 export:INPUT save:INPUT read:READ} [current_design]
-set_property IOSTANDARD LVCMOS18 [get_ports -of_objects [get_iobanks 35]];
 set_property src_info {type:XDC file:1 line:379 export:INPUT save:INPUT read:READ} [current_design]
 set_property IOSTANDARD LVCMOS33 [get_ports -of_objects [get_iobanks 13]];

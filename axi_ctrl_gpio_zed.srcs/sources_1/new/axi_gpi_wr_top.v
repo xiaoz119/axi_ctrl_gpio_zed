@@ -54,7 +54,7 @@ module axi_gpi_wr_top(
 
     // Assign internal clock and reset
     assign clk = sys_clk;
-    assign resetn = reset_n;
+    assign resetn = !reset_n;
 
     // Instantiate the AXI4 Lite Master Controller
     axi4_lite_master_controller #(
