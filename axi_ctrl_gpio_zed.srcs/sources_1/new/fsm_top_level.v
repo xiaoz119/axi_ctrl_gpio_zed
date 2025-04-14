@@ -38,12 +38,30 @@ module fsm_top_level(
     );
 
     // Internal signals and registers
-    // axi_exec_count = 7'b0; // Uncomment if initialization is required here
+    // axi_exec_count = 7'b0; // Initialization is handled in the always block below
     wire en_count_load;
     // wire en_count_update;
     wire done_axi_exec = done_wr | done_rd;
     wire run = opcode != 3'b000;
-    wire stall = opcode == 4'b111;
+    wire stall = opcode == 3'b111;
+
+    // Delay Counter
+    parameter DELAY_CYCLES = 1;  // e.g., set to 2 if RAM has 2-cycle latency
+    reg [$clog2(DELAY_CYCLES+1)-1:0] delay_counter;
+    reg instr_valid;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            delay_counter <= 0;
+            instr_valid <= 0;
+        end else begin
+            if (en_pc)
+                delay_counter <= DELAY_CYCLES;
+            else if (delay_counter != 0)
+                delay_counter <= delay_counter - 1;
+
+            instr_valid <= (delay_counter == 1); // assert one cycle before 0
+        end
+    end
 
     // Control state
     reg [2:0] curr_state, next_state;
@@ -56,36 +74,35 @@ module fsm_top_level(
     localparam S_AXI_EXECUTE_DONE  = 3'b110;
     localparam S_STALL             = 3'b111;
 
-    assign en_count_load = (curr_state == S_DECODE);
+    
     
     always @(posedge clk, negedge rst_n) begin
         if (!rst_n)
-            curr_state = S_IDLE;
+            curr_state <= S_IDLE;
         else
-            curr_state = next_state;
+            curr_state <= next_state;
     end
 
     always @(posedge clk, negedge rst_n) begin
         if (!rst_n)
-            axi_exec_count = 7'b0000000;
+            axi_exec_count <= 7'b0000000;
         else if (en_count_load)
-            axi_exec_count = count;
+            axi_exec_count <= count;
         else if (done_axi_exec)
-            axi_exec_count = axi_exec_count - 1;
+            axi_exec_count <= axi_exec_count - 1;
+        else
+            axi_exec_count <= axi_exec_count;
     end
     
     // Transition
     always @(*) begin
         case (curr_state)
-            S_IDLE: next_state = S_FETCH;
-            S_FETCH: begin 
-                if (opcode == 3'b111)
-                    next_state = S_STALL;
-                else
-                    next_state = S_DECODE;
+            S_IDLE: begin 
+                next_state = S_FETCH;
             end
-            S_DECODE: next_state = S_AXI_EXECUTE_START;
-            S_AXI_EXECUTE_START: next_state = S_AXI_EXECUTE;
+            S_FETCH: next_state = S_DECODE;
+            S_DECODE: next_state = (instr_valid) ?  S_AXI_EXECUTE_START : S_DECODE;
+            S_AXI_EXECUTE_START: next_state = (opcode != 3'b000) ? S_AXI_EXECUTE : S_AXI_EXECUTE_DONE;
             S_AXI_EXECUTE: begin
                 if (done_axi_exec)
                     next_state = S_COUNT_CHECK;
@@ -99,9 +116,9 @@ module fsm_top_level(
                     next_state = S_AXI_EXECUTE_DONE;
             end
             S_AXI_EXECUTE_DONE: next_state = S_IDLE;
-            S_STALL: begin
-                next_state = S_STALL;
-            end
+            // S_STALL: begin
+            //     // Remain in S_STALL state until external conditions change
+            // end
             default: next_state = S_IDLE;
         endcase
     end
@@ -128,27 +145,22 @@ module fsm_top_level(
                 start_rd = 1'b0;
                 start_wr = 1'b0;
                 en_pc = 1'b0;
-                en_mem_rd = 1'b1;
+                en_mem_rd = 1'b0;
                 done_instr = 1'b0;
 
             end
             S_AXI_EXECUTE_START: begin
                 case (opcode)
-                    3'b000: begin
-                        start_rd = 1'b0;
+                    3'b001: begin
+                        // Read operation
+                        start_rd = 1'b1;
                         start_wr = 1'b0;
                         en_pc = 1'b0;
                         en_mem_rd = 1'b0;
                         done_instr = 1'b0;
                     end
-                    3'b001: begin
-                        start_rd = 1'b1;
-                        start_wr = 1'b0;
-                        en_pc = 1'b0;
-                        en_mem_rd = 1'b1;
-                        done_instr = 1'b0;
-                    end
                     3'b010: begin
+                        // Write operation
                         start_rd = 1'b0;
                         start_wr = 1'b1;
                         en_pc = 1'b0;
@@ -156,19 +168,20 @@ module fsm_top_level(
                         done_instr = 1'b0;
                     end
                     default: begin
+                        // Default case: No operation
                         start_rd = 1'b0;
                         start_wr = 1'b0;
                         en_pc = 1'b0;
                         en_mem_rd = 1'b0;
                         done_instr = 1'b0;
                     end
-                endcase 
+                endcase
             end
             S_AXI_EXECUTE: begin
                 start_rd = 1'b0;
                 start_wr = 1'b0;
                 en_pc = 1'b0;
-                en_mem_rd = 1'b0;
+                en_mem_rd = 1'b1;
                 done_instr = 1'b0;
             end
             S_COUNT_CHECK: begin
@@ -201,5 +214,7 @@ module fsm_top_level(
             end
         endcase
     end
+
+    assign en_count_load = (curr_state == S_DECODE);
 
 endmodule

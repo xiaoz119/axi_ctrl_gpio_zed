@@ -1,0 +1,5 @@
+Time resolution is 1 ps
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top_led_wr_tb.uut_bram.inst.\native_mem_module.blk_mem_gen_v8_4_6_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+$finish called at time : 1 us : File "H:/workspace/AXI_IIC_Ctrl/axi_ctrl_gpio_zed/axi_ctrl_gpio_zed.srcs/sim_1/new/top_led_wr_tb.sv" Line 148

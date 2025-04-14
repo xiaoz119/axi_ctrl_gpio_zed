@@ -32,7 +32,7 @@ module instruction_rom #(
 
     // Initialize from hex memory file
     initial begin
-        $readmemh("instr_mem_wr.mem", rom);  // Replace with your file name
+        $readmemb("instr_mem_wr.mem", rom);  // Replace with your file name
     end
 
     // Synchronous read

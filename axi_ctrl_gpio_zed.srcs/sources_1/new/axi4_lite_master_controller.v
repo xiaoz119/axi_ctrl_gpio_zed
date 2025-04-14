@@ -18,7 +18,7 @@
 // Additional Comments:
 // 
 ////////////////////////////////////////////////////////////////////////////////
-module axit_lite_master_controller
+module axi4_lite_master_controller
   #(parameter AXI_ADDR_WIDTH = 9,
     parameter AXI_DATA_WIDTH = 32)
   (ACLK,
@@ -55,7 +55,7 @@ module axit_lite_master_controller
   output MEM_we;
   output [8-1:0] MEM_addr;
   output [AXI_DATA_WIDTH-1:0] MEM_wdata;
-  input reg [AXI_DATA_WIDTH-1:0] MEM_rdata;
+  input [AXI_DATA_WIDTH-1:0] MEM_rdata;
   input M_ACLK;
   input M_ARESETN;
   // Write Address Channel
@@ -81,126 +81,80 @@ module axit_lite_master_controller
   output [0:0] M_AXI_rready;               // Read Data Ready
   input [2-1:0] M_AXI_rresp;               // Read Response
   input [0:0] M_AXI_rvalid;                // Read Data Valid
-  
 
   // Internal signals
-  reg wr_start_flag, wr_done_flag;
-  reg rd_start_flag, rd_done_flag;
+  // Grouped wire and register definitions
+  wire wr_start_flag, wr_done_flag;
+  wire rd_start_flag, rd_done_flag;
   wire wr_awvalid, wr_wvalid, wr_bready;
-  reg rd_arvalid, rd_rready;
+  wire rd_arvalid, rd_rready;
   wire rd_en_read;
 
   wire [AXI_ADDR_WIDTH-1:0] axi_r_w_addr;
-  // reg [AXI_ADDR_WIDTH-1:0] index_wr_addr;
-  // reg [AXI_ADDR_WIDTH-1:0] index_rd_addr;
-  reg [AXI_ADDR_WIDTH-1:0] axi_wr_addr;
-  reg [AXI_ADDR_WIDTH-1:0] axi_rd_addr;
+  reg [AXI_ADDR_WIDTH-1:0] axi_wr_addr = 0;
+  reg [AXI_ADDR_WIDTH-1:0] axi_rd_addr = 0;
 
-  reg [AXI_DATA_WIDTH-1:0] wr_data;
-  reg [AXI_DATA_WIDTH-1:0] rd_data;
+  reg [AXI_DATA_WIDTH-1:0] axi_wr_data = 0;
+  wire [AXI_DATA_WIDTH-1:0] axi_rd_data;
+
+  reg [7:0] pc = 8'b00000000;
+  wire [7:0] pc_next = pc + 1;
+
+  wire [31:0] instr;
+  wire [3-1:0] opcode;
+  wire [7-1:0] mem_r_w_addr;
+  wire [7-1:0] axi_count;
+  wire [7-1:0] axi_exec_count;
+
+  wire en_pc;
+  wire [7:0] axi_counter;
+  wire en_mem;
+  wire en_mem_wr;
+  wire en_mem_rd;
+  wire instr_done_flag;
+
+  reg [32-1:0] mem_rdata = 32'b0;
 
   // AXI IO Control
-  assign M_AXI_wstrb = 4'b1111; // Assuming full byte write
-  assign M_AXI_wdata = wr_data;
+  assign M_AXI_wstrb = 4'b1111; // Hardcoded to enable writing to all byte lanes. This assumes that all bytes are written in every transaction. If partial writes are needed, this logic must be updated.
+  assign M_AXI_wdata = mem_rdata; 
   assign M_AXI_araddr = axi_rd_addr;
   assign M_AXI_awaddr = axi_wr_addr;
-  assign M_AXI_rdata = rd_data;
+  assign axi_rd_data = M_AXI_rdata;
 
-
-  // sudo start
-  // initial begin
-  //   axi_r_w_addr = 32'h0000_0000;
-  //   offset_addr = 32'h0000_0000;
-  //   index_wr_addr = 0;
-  //   index_rd_addr = 0;
-  //   axi_wr_addr = 32'h0000_0000;
-  //   axi_rd_addr = 32'h0000_0000;
-  //   wr_data = 32'h0000_0000;
-  //   wr_start_flag = 1'b0;
-  //   rd_start_flag = 1'b0;
-  //   rd_data = 32'h0000_0000;
-
-  //   # 500;
-  //   index_wr_addr = 1;
-  //   wr_start_flag = 1'b1;
-  //   rd_rready = 1'b1;;
-  //   # 10
-  //   wr_start_flag = 1'b0;
-  //   # 55
-  //   rd_rready = 1'b0;
-
-  //   # 500
-  //   index_wr_addr = 0;
-  //   rd_start_flag = 1'b1;
-  //   # 10
-  //   rd_start_flag = 1'b0;
-
-  // end
-    // ----------- Program Counter ----------------
-    // Program Counter
-    reg [7:0] pc = 8'b00000000;
-    wire [7:0] pc_next = pc + 1;
-    always @ (posedge ACLK, negedge ARESETN) begin
-        if (!ARESETN)
-            pc <= 8'b00000000;
-        else begin
-            if (en_pc) 
-                pc = pc_next;
-            else
-                pc = pc;
-        end
+  // Program Counter
+  always @ (posedge ACLK, negedge ARESETN) begin
+    if (!ARESETN)
+      pc <= 8'b00000000;
+    else begin
+      if (en_pc) 
+        pc <= pc_next;
+      else
+        pc = pc;
     end
-
-    // ------- Instruction ROM instantiation
-    reg [31:0] instr;
-    instruction_rom u_instr_mem (
-        .clk(ACLK),
-        .addr(pc),
-        .data(instr)
-    );
-
-    wire [3:0] opcode;
-    wire [7:0] mem_rw_addr;
-    wire [7:0] axi_count;
-    wire [7:0] axi_exec_count;
-
-    wire en_pc;
-
-
-    assign opcode = instr[2:0]; // Assuming instruction is 32 bits
-    assign axi_r_w_addr = instr[11:3]; // Assuming instruction is 32 bits
-    assign mem_rw_addr = instr[19:12]; // Assuming instruction is 32 bits
-    assign axi_count = instr[26:20]; // Assuming instruction is 32 bits
-
-    wire [7:0] axi_counter;
-    assign axi_counter = axi_count - axi_exec_count;
-
-
-  // Memory Interface
-  assign MEM_en = ; // Always enabled
-
-  // address
-  always @(axi_counter) begin
-    axi_wr_addr = axi_r_w_addr  + (axi_counter << 2);
-    axi_rd_addr = axi_r_w_addr  + (axi_counter << 2);
-    // 0x00000000
-    // 0x00000004
-    // 0x00000008
   end
 
-  // // Read address
-  // always @(axi_counter) begin
-  //   axi_rd_addr = axi_r_w_addr  + (axi_counter << 2);
-  //   // 0x00000000
-  //   // 0x00000004
-  //   // 0x00000008
-  // end
-  
-  // Write data
-  // always @(index_wr_addr) begin
-  //   wr_data = 32'hffff_ffff;
-  // end
-  
+  // Instruction ROM instantiation
+  instruction_rom u_instr_mem (
+    .clk(ACLK),
+    .addr(pc),
+    .data(instr)
+  );
+
+  // Decoder 
+  assign opcode = instr[2:0];
+  assign axi_r_w_addr = instr[11:3]; // Assuming instruction is 32 bits
+  assign mem_r_w_addr = instr[19:12]; // Assuming instruction is 32 bits
+  assign axi_count = instr[26:20]; // Assuming instruction is 32 bits
+  assign axi_counter = axi_count - axi_exec_count;
+  assign MEM_addr = mem_r_w_addr; 
+
+  // Address calculation
+  always @* begin
+    axi_wr_addr = axi_r_w_addr  + (axi_counter << 2);
+    axi_rd_addr = axi_r_w_addr  + (axi_counter << 2);
+  end
+
   // Connect FSM outputs to AXI signals
   assign M_AXI_awvalid = wr_awvalid;
   assign M_AXI_wvalid = wr_wvalid;
@@ -209,32 +163,29 @@ module axit_lite_master_controller
   assign M_AXI_arvalid = rd_arvalid;
   assign M_AXI_rready = rd_rready;
 
-  // Top level FSM
-  wire en_mem;
-  wire en_mem_wr;
-  wire en_mem_rd;
+  // Memory control signals
   assign en_mem = en_mem_rd | en_mem_wr;
   assign MEM_en = en_mem;
   assign MEM_we = en_mem_wr;
-  wire en_mem;
-  reg [32-1:0] mem_rdata;
-  reg [32-1:0] mem_wdata;
+  assign MEM_wdata = axi_rd_data;
 
   always @(posedge ACLK, negedge ARESETN) begin
     if (!ARESETN) 
       mem_rdata <= 32'b0;
-    else if (en_mem_rd) 
-      mem_rdata <= MEM_rdata;
-    else if (en_mem_wr) begin
-      MEM_wdata <= mem_wdata;
+    else begin
+      if (en_mem_rd) 
+        mem_rdata <= MEM_rdata;
+      else
+        mem_rdata <= mem_rdata;
     end
   end
 
+  // FSM instantiations
   fsm_top_level u_fsm_top_level (
     .clk(ACLK),
     .rst_n(ARESETN),
-    .opcode(3'b001), // Example opcode
-    .count(7'b0000000), // Example count
+    .opcode(opcode), // Example opcode
+    .count(axi_count), // Example count
     .done_wr(wr_done_flag),
     .done_rd(rd_done_flag),
     .start_rd(rd_start_flag),
@@ -242,10 +193,9 @@ module axit_lite_master_controller
     .en_mem_rd(en_mem_rd),
     .en_pc(en_pc),
     .axi_exec_count(axi_exec_count),
-    .done_instr()
+    .done_instr(instr_done_flag)
   );
 
-  // Write FSM
   fsm_axi_lite_wr u_fsm_axi_lite_wr (
     .clk(ACLK),
     .rst_n(ARESETN),
@@ -260,7 +210,6 @@ module axit_lite_master_controller
     .bresp(M_AXI_bresp)
   );
 
-  // Instantiate the read FSM
   fsm_axi_lite_rd u_fsm_axi_lite_rd (
     .clk(ACLK),
     .rst_n(ARESETN),
