@@ -1,0 +1,12 @@
+
+{ 
+    crc :  2926229782014637743  , 
+    ccp_crc :  0  , 
+    cmdline : " --incr --debug typical --relax --mt 2 -L xil_defaultlib -L axi_lite_ipif_v3_0_4 -L lib_cdc_v1_0_2 -L interrupt_control_v3_1_4 -L axi_gpio_v2_0_30 -L blk_mem_gen_v8_4_6 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot axi_ctrl_gpio_top_tb_behav xil_defaultlib.axi_ctrl_gpio_top_tb xil_defaultlib.glbl" , 
+    buildDate : "May  7 2023" , 
+    buildTime : "15:24:31" , 
+    linkCmd : "H:\\AMD\\Vivado\\2023.1\\data\\..\\tps\\mingw\\6.2.0\\win64.o\\nt\\bin\\gcc.exe -Wa,-W  -O -Wl,--stack,104857600 -o \"xsim.dir/axi_ctrl_gpio_top_tb_behav/xsimk.exe\"   \"xsim.dir/axi_ctrl_gpio_top_tb_behav/obj/xsim_0.win64.obj\" \"xsim.dir/axi_ctrl_gpio_top_tb_behav/obj/xsim_1.win64.obj\" -L\"H:\\AMD\\Vivado\\2023.1\\lib\\win64.o\" -lrdi_simulator_kernel   -lrdi_simbridge_kernel" , 
+    aggregate_nets : 
+    [ 
+    ] 
+} 

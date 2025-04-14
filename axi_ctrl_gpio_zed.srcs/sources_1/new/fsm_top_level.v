@@ -86,12 +86,14 @@ module fsm_top_level(
     always @(posedge clk, negedge rst_n) begin
         if (!rst_n)
             axi_exec_count <= 7'b0000000;
-        else if (en_count_load)
-            axi_exec_count <= count;
-        else if (done_axi_exec)
-            axi_exec_count <= axi_exec_count - 1;
-        else
-            axi_exec_count <= axi_exec_count;
+        else begin
+            if (en_count_load) 
+                axi_exec_count <= count;
+            else if (done_axi_exec)
+                axi_exec_count <= axi_exec_count - 1;
+            else
+                axi_exec_count <= axi_exec_count;
+        end
     end
     
     // Transition

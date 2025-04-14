@@ -21,69 +21,38 @@
 module axi4_lite_master_controller
   #(parameter AXI_ADDR_WIDTH = 9,
     parameter AXI_DATA_WIDTH = 32)
-  (ACLK,
-  ARESETN,
-  MEM_en,
-  MEM_we,
-  MEM_addr,
-  MEM_wdata,
-  MEM_rdata,
-  M_ACLK,
-  M_ARESETN,
-  M_AXI_araddr,
-  M_AXI_arready,
-  M_AXI_arvalid,
-  M_AXI_awaddr,
-  M_AXI_awready,
-  M_AXI_awvalid,
-  M_AXI_bready,
-  M_AXI_bresp,
-  M_AXI_bvalid,
-  M_AXI_rdata,
-  M_AXI_rready,
-  M_AXI_rresp,
-  M_AXI_rvalid,
-  M_AXI_wdata,
-  M_AXI_wready,
-  M_AXI_wstrb,
-  M_AXI_wvalid);
-  // Clock and Reset
-  input ACLK;
-  input ARESETN;
-  // Memory Interface
-  output MEM_en;
-  output MEM_we;
-  output [8-1:0] MEM_addr;
-  output [AXI_DATA_WIDTH-1:0] MEM_wdata;
-  input [AXI_DATA_WIDTH-1:0] MEM_rdata;
-  input M_ACLK;
-  input M_ARESETN;
-  // Write Address Channel
-  output [AXI_ADDR_WIDTH-1:0] M_AXI_awaddr; // Write Address
-  input [0:0] M_AXI_awready;               // Write Address Ready
-  output [0:0] M_AXI_awvalid;              // Write Address Valid
-  // Write Data Channel
-  output [AXI_DATA_WIDTH-1:0] M_AXI_wdata; // Write Data
-  input [0:0] M_AXI_wready;                // Write Data Ready
-  output [(AXI_DATA_WIDTH/8)-1:0] M_AXI_wstrb; // Write Strobe
-  output [0:0] M_AXI_wvalid;               // Write Data Valid
-  // Write Response Channel
-  output [0:0] M_AXI_bready;               // Write Response Ready
-  input [2-1:0] M_AXI_bresp;               // Write Response
-  input [0:0] M_AXI_bvalid;                // Write Response Valid
-
-  // Read Address Channel
-  output [AXI_ADDR_WIDTH-1:0] M_AXI_araddr; // Read Address
-  input [0:0] M_AXI_arready;               // Read Address Ready
-  output [0:0] M_AXI_arvalid;              // Read Address Valid
-  // Read Data Channel
-  input [AXI_DATA_WIDTH-1:0] M_AXI_rdata;  // Read Data
-  output [0:0] M_AXI_rready;               // Read Data Ready
-  input [2-1:0] M_AXI_rresp;               // Read Response
-  input [0:0] M_AXI_rvalid;                // Read Data Valid
+  (
+    input ACLK,
+    input ARESETN,
+    output MEM_en,
+    output MEM_we,
+    output [8-1:0] MEM_addr,
+    output [AXI_DATA_WIDTH-1:0] MEM_wdata,
+    input [AXI_DATA_WIDTH-1:0] MEM_rdata,
+    input M_ACLK,
+    input M_ARESETN,
+    output [AXI_ADDR_WIDTH-1:0] M_AXI_awaddr,
+    input M_AXI_awready,
+    output M_AXI_awvalid,
+    output [AXI_DATA_WIDTH-1:0] M_AXI_wdata,
+    input M_AXI_wready,
+    output [(AXI_DATA_WIDTH/8)-1:0] M_AXI_wstrb,
+    output M_AXI_wvalid,
+    output M_AXI_bready,
+    input [1:0] M_AXI_bresp,
+    input M_AXI_bvalid,
+    output [AXI_ADDR_WIDTH-1:0] M_AXI_araddr,
+    input M_AXI_arready,
+    output M_AXI_arvalid,
+    input [AXI_DATA_WIDTH-1:0] M_AXI_rdata,
+    output M_AXI_rready,
+    input [1:0] M_AXI_rresp,
+    input M_AXI_rvalid,
+    input [31:0] instr, // Instruction input from external instruction_rom
+    output [7:0] pc     // Program counter output to instruction_rom
+  );
 
   // Internal signals
-  // Grouped wire and register definitions
   wire wr_start_flag, wr_done_flag;
   wire rd_start_flag, rd_done_flag;
   wire wr_awvalid, wr_wvalid, wr_bready;
@@ -97,10 +66,9 @@ module axi4_lite_master_controller
   reg [AXI_DATA_WIDTH-1:0] axi_wr_data = 0;
   wire [AXI_DATA_WIDTH-1:0] axi_rd_data;
 
-  reg [7:0] pc = 8'b00000000;
-  wire [7:0] pc_next = pc + 1;
+  reg [7:0] pc_reg = 0;
+  wire [7:0] pc_next = pc_reg + 1;
 
-  wire [31:0] instr;
   wire [3-1:0] opcode;
   wire [7-1:0] mem_r_w_addr;
   wire [7-1:0] axi_count;
@@ -113,10 +81,10 @@ module axi4_lite_master_controller
   wire en_mem_rd;
   wire instr_done_flag;
 
-  reg [32-1:0] mem_rdata = 32'b0;
+  reg [32-1:0] mem_rdata = 0;
 
   // AXI IO Control
-  assign M_AXI_wstrb = 4'b1111; // Hardcoded to enable writing to all byte lanes. This assumes that all bytes are written in every transaction. If partial writes are needed, this logic must be updated.
+  assign M_AXI_wstrb = 4'b1111; // Hardcoded to enable writing to all byte lanes
   assign M_AXI_wdata = mem_rdata; 
   assign M_AXI_araddr = axi_rd_addr;
   assign M_AXI_awaddr = axi_wr_addr;
@@ -125,32 +93,29 @@ module axi4_lite_master_controller
   // Program Counter
   always @ (posedge ACLK, negedge ARESETN) begin
     if (!ARESETN)
-      pc <= 8'b00000000;
-    else begin
-      if (en_pc) 
-        pc <= pc_next;
-      else
-        pc = pc;
-    end
+      pc_reg <= 8'b00000000;
+    else
+      pc_reg <= (en_pc)? pc_next : pc_reg;
+      // if (en_pc) 
+      //   pc_reg <= pc_next;
+      //   else
+    
   end
 
-  // Instruction ROM instantiation
-  instruction_rom u_instr_mem (
-    .clk(ACLK),
-    .addr(pc),
-    .data(instr)
-  );
+  assign pc = pc_reg; // Output program counter to external instruction_rom
 
   // Decoder 
   assign opcode = instr[2:0];
-  assign axi_r_w_addr = instr[11:3]; // Assuming instruction is 32 bits
-  assign mem_r_w_addr = instr[19:12]; // Assuming instruction is 32 bits
-  assign axi_count = instr[26:20]; // Assuming instruction is 32 bits
+  assign axi_r_w_addr = instr[11:3];
+  // assign mem_r_w_addr = instr[19:12];
+  assign axi_count = instr[26:20];
   assign axi_counter = axi_count - axi_exec_count;
-  assign MEM_addr = mem_r_w_addr; 
+  // assign MEM_addr = mem_r_w_addr; 
+
+  assign MEM_addr = instr[19:12];
 
   // Address calculation
-  always @* begin
+  always @(*) begin
     axi_wr_addr = axi_r_w_addr  + (axi_counter << 2);
     axi_rd_addr = axi_r_w_addr  + (axi_counter << 2);
   end
@@ -171,21 +136,21 @@ module axi4_lite_master_controller
 
   always @(posedge ACLK, negedge ARESETN) begin
     if (!ARESETN) 
-      mem_rdata <= 32'b0;
-    else begin
-      if (en_mem_rd) 
-        mem_rdata <= MEM_rdata;
-      else
-        mem_rdata <= mem_rdata;
-    end
+      mem_rdata <= 0;
+    else 
+      mem_rdata <= (en_mem_rd) ? MEM_rdata : mem_rdata;
+      // if (en_mem_rd) 
+      //   mem_rdata <= MEM_rdata;
+      // else
+      //   mem_rdata <= mem_rdata
   end
 
   // FSM instantiations
   fsm_top_level u_fsm_top_level (
     .clk(ACLK),
     .rst_n(ARESETN),
-    .opcode(opcode), // Example opcode
-    .count(axi_count), // Example count
+    .opcode(opcode),
+    .count(axi_count),
     .done_wr(wr_done_flag),
     .done_rd(rd_done_flag),
     .start_rd(rd_start_flag),

@@ -50,7 +50,7 @@ module fsm_axi_lite_wr(
     assign resp_okay = (bresp == 2'b00) ? 1'b1 : 1'b0;
 
     // Sequential block
-    always @(posedge clk or negedge rst_n) begin
+    always @(posedge clk, negedge rst_n) begin
         if (!rst_n)
             curr_state <= S_IDLE;
         else
@@ -112,12 +112,12 @@ module fsm_axi_lite_wr(
                 bready = 1'b0;
                 done_flag = 1'b1;
             end
-            default: begin
-                awvalid = 1'b0;
-                wvalid = 1'b0;
-                bready = 1'b0;
-                done_flag = 1'b0;
-            end
+            // default: begin
+            //     awvalid = 1'b0;
+            //     wvalid = 1'b0;
+            //     bready = 1'b0;
+            //     done_flag = 1'b0;
+            // end
         endcase
     end
 endmodule

@@ -3,12 +3,12 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Mon Apr 14 00:30:01 2025
-# Process ID: 40368
+# Start of session at: Mon Apr 14 18:14:23 2025
+# Process ID: 25592
 # Current directory: H:/workspace/AXI_IIC_Ctrl/axi_ctrl_gpio_zed/axi_ctrl_gpio_zed.runs/synth_1
-# Command line: vivado.exe -log axi_gpi_wr_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source axi_gpi_wr_top.tcl
-# Log file: H:/workspace/AXI_IIC_Ctrl/axi_ctrl_gpio_zed/axi_ctrl_gpio_zed.runs/synth_1/axi_gpi_wr_top.vds
+# Command line: vivado.exe -log axi_ctrl_gpio_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source axi_ctrl_gpio_top.tcl
+# Log file: H:/workspace/AXI_IIC_Ctrl/axi_ctrl_gpio_zed/axi_ctrl_gpio_zed.runs/synth_1/axi_ctrl_gpio_top.vds
 # Journal file: H:/workspace/AXI_IIC_Ctrl/axi_ctrl_gpio_zed/axi_ctrl_gpio_zed.runs/synth_1\vivado.jou
 # Running On: DESKTOP-SF4M6F2, OS: Windows, CPU Frequency: 3610 MHz, CPU Physical cores: 12, Host memory: 34088 MB
 #-----------------------------------------------------------
-source axi_gpi_wr_top.tcl -notrace
+source axi_ctrl_gpio_top.tcl -notrace

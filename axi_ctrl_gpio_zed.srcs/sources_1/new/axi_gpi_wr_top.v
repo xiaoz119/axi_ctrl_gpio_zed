@@ -9,7 +9,7 @@
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: Top-level module integrating AXI4 Lite Master Controller, BRAM, GPIO, and Instruction ROM.
 // 
 // Dependencies: 
 // 
@@ -19,16 +19,14 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module axi_gpi_wr_top(
     input wire sys_clk,       // System clock
-    input wire reset_n,       // Active-low reset
+    input wire btn_c,       // Active-low reset
     output wire [7:0] leds    // 8-bit LED output
 );
 
     // Internal signals
     wire clk;
-    wire resetn;
     wire [8:0] axi_awaddr;
     wire axi_awvalid;
     wire axi_awready;
@@ -52,9 +50,13 @@ module axi_gpi_wr_top(
     wire [31:0] bram_dina;
     wire [31:0] bram_douta;
 
+    // Instruction ROM signals
+    wire [31:0] instr; // Instruction output from ROM
+    wire [7:0] pc;     // Program counter input to ROM
+    wire reset_n = !btn_c;
+
     // Assign internal clock and reset
     assign clk = sys_clk;
-    assign resetn = !reset_n;
 
     // Instantiate the AXI4 Lite Master Controller
     axi4_lite_master_controller #(
@@ -62,14 +64,14 @@ module axi_gpi_wr_top(
         .AXI_DATA_WIDTH(32)
     ) uut_axi4_lite_master_controller (
         .ACLK(clk),
-        .ARESETN(resetn),
+        .ARESETN(reset_n),
         .MEM_en(bram_ena),
         .MEM_we(bram_wea),
         .MEM_addr(bram_addra),
         .MEM_wdata(bram_dina),
         .MEM_rdata(bram_douta),
         .M_ACLK(clk),
-        .M_ARESETN(resetn),
+        .M_ARESETN(reset_n),
         .M_AXI_araddr(axi_araddr),
         .M_AXI_arready(axi_arready),
         .M_AXI_arvalid(axi_arvalid),
@@ -86,7 +88,16 @@ module axi_gpi_wr_top(
         .M_AXI_wdata(axi_wdata),
         .M_AXI_wready(axi_wready),
         .M_AXI_wstrb(axi_wstrb),
-        .M_AXI_wvalid(axi_wvalid)
+        .M_AXI_wvalid(axi_wvalid),
+        .instr(instr), // Connect instruction from ROM
+        .pc(pc)        // Connect program counter to ROM
+    );
+
+    // Instantiate the Instruction ROM
+    instruction_rom_wr uut_instruction_rom (
+        .clk(clk),
+        .addr(pc),      // Program counter as address
+        .data(instr)    // Instruction output
     );
 
     // Instantiate the BRAM
@@ -97,7 +108,7 @@ module axi_gpi_wr_top(
         .addra(bram_addra),
         .dina(bram_dina),
         .douta(bram_douta),
-        .clkb(1'b0), // Unused
+        .clkb(clk), // Unused
         .enb(1'b0), // Unused
         .web(1'b0), // Unused
         .addrb(8'b0), // Unused
@@ -108,7 +119,7 @@ module axi_gpi_wr_top(
     // Instantiate the GPIO
     axi_gpio_0 uut_gpio (
         .s_axi_aclk(clk),
-        .s_axi_aresetn(resetn),
+        .s_axi_aresetn(reset_n),
         .s_axi_awaddr(axi_awaddr),
         .s_axi_awvalid(axi_awvalid),
         .s_axi_awready(axi_awready),

@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1744604998" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/axi_gpi_wr_top.dcp">
-  <File Type="PA-TCL" Name="axi_gpi_wr_top.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="axi_gpi_wr_top_drc_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="axi_gpi_wr_top_reports.tcl"/>
-  <File Type="RDS-RDS" Name="axi_gpi_wr_top.vds"/>
-  <File Type="RDS-UTIL" Name="axi_gpi_wr_top_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="axi_gpi_wr_top_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="axi_gpi_wr_top.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="axi_gpi_wr_top_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="axi_gpi_wr_top_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1744668861" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/axi_gpi_wr_top.dcp">
+  <File Type="PA-TCL" Name="axi_ctrl_gpio_top.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="axi_ctrl_gpio_top_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="axi_ctrl_gpio_top_reports.tcl"/>
+  <File Type="RDS-RDS" Name="axi_ctrl_gpio_top.vds"/>
+  <File Type="RDS-UTIL" Name="axi_ctrl_gpio_top_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="axi_ctrl_gpio_top_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="axi_ctrl_gpio_top.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="axi_ctrl_gpio_top_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="axi_ctrl_gpio_top_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/ip/axi_gpio_1/axi_gpio_1.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/axi_gpio_0/axi_gpio_0.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/axi4_lite_master_controller.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -43,8 +64,30 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/instruction_rom.v">
+    <File Path="$PSRCDIR/sources_1/new/instruction_rom_rd.v">
       <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/instruction_rom_wr.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/axi_ctrl_gpio_top.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/axi_gpio_rd_top.v">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -52,6 +95,7 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/axi_gpi_wr_top.v">
       <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -69,10 +113,17 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/imports/axi_ctrl_gpio_zed/instr_mem_rd.mem">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/instr_mem_rd.mem"/>
+        <Attr Name="ImportTime" Val="1744659218"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="axi_gpi_wr_top"/>
-      <Option Name="TopAutoSet" Val="TRUE"/>
+      <Option Name="TopModule" Val="axi_ctrl_gpio_top"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
@@ -109,6 +160,4 @@
     </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="axi_gpio_0"/>
 </GenRun>
