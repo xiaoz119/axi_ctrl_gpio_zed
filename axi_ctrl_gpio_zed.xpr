@@ -242,6 +242,7 @@
       </File>
       <File Path="$PSRCDIR/sim_1/new/top_led_wr_tb.sv">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -250,6 +251,7 @@
       </File>
       <File Path="$PSRCDIR/sim_1/new/axi_gpio_wr_top_tb.v">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
